@@ -1,1 +1,120 @@
-<p>companys works!</p>
+<section id="list">
+  <div class="container">
+    <div class="row">
+      <div class="text-center w-100">
+        <h3 class="my-4">Company Details</h3>
+      </div>
+      <div class="col-12">
+        <!-- search and add/create -->
+        <div class="row d-flex justify-content-between mb-3">
+          <a class="btn btn-green mx-3 col-2" routerLink="../list/-1">Add</a>
+          <div class="input-group col-8 col-md-4">
+            <input
+              type="text"
+              class="form-control rounded-0"
+              name="search"
+              autocomplete="off"
+              [(ngModel)]="searchText"
+              placeholder="Search"
+            />
+            <div class="input-group-append">
+              <span class="input-group-text">
+                <i class="fa fa-search" aria-hidden="true"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+        <!-- ---------------- -->
+
+        <!-- list of detail in table -->
+        <div class="table-responsive">
+          <table class="table table-hover table-dark">
+            <thead>
+              <tr>
+                <th>Logo</th>
+                <th (click)="sort('name')">
+                  Name&nbsp;<i class="fa fa-sort"></i>
+                </th>
+                <th (click)="sort('email')">
+                  Email&nbsp;<i class="fa fa-sort"></i>
+                </th>
+                <th (click)="sort('phone')">
+                  Phone&nbsp;<i class="fa fa-sort"></i>
+                </th>
+                <th (click)="sort('description')">
+                  Description&nbsp;<i class="fa fa-sort"></i>
+                </th>
+                <th (click)="sort('state')">
+                  State&nbsp;<i class="fa fa-sort"></i>
+                </th>
+                <th (click)="sort('city')">
+                  City&nbsp;<i class="fa fa-sort"></i>
+                </th>
+                <th class="text-center">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- if list is empty -->
+              <tr *ngIf="isEmty" class="border-0 text-center">
+                <td colspan="8">
+                  <h3 class="m-4">No Record</h3>
+                </td>
+              </tr>
+              <!-- ----------- -->
+
+              <!-- if list of data available -->
+              <tr
+                *ngFor="
+                  let list of lists
+                    | orderBy: key:reverse
+                    | filter: searchText
+                    | paginate: { itemsPerPage: pageSize, currentPage: p }
+                "
+              >
+                <td>
+                  <img
+                    class="img-fluid img"
+                    src="http://localhost:3200/{{ list.image }}"
+                    alt=""
+                  />
+                </td>
+                <td>{{ list.name }}</td>
+                <td>{{ list.email }}</td>
+                <td>{{ list.phone }}</td>
+                <td>{{ list.description }}</td>
+                <td>{{ list.state }}</td>
+                <td>{{ list.city }}</td>
+                <td class="text-right">
+                  <button class="btn btn-green fa fa-pencil mx-2"></button>
+                  <button class="btn btn-green fa fa-times mx-2"></button>
+                </td>
+              </tr>
+              <!-- -------------------- -->
+
+              <!-- pagination -->
+              <tr>
+                <td colspan="1">
+                  <select
+                    id="PerPage"
+                    class="form-control btn-green border-0"
+                    [(ngModel)]="pageSize"
+                  >
+                    <option [ngValue]="5">5</option>
+                    <option [ngValue]="10">10</option>
+                    <option [ngValue]="25">25</option>
+                  </select>
+                </td>
+                <td colspan="7">
+                  <pagination-controls (pageChange)="p = $event">
+                  </pagination-controls>
+                </td>
+              </tr>
+              <!-- ---------- -->
+            </tbody>
+          </table>
+        </div>
+        <!-- ----------------------- -->
+      </div>
+    </div>
+  </div>
+</section>

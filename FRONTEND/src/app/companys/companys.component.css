@@ -1,0 +1,44 @@
+input,
+input:focus {
+  background: #1d2025;
+  border: 1px solid #bcefa6;
+  border-radius: 0px;
+  color: white;
+  box-shadow: none;
+}
+
+.input-group-text {
+  background-color: #bcefa6;
+  border-radius: 0;
+  color: #1d2025;
+}
+
+.btn-green {
+  background-color: #bcefa6;
+  border-radius: 0;
+  color: #1d2025 !important;
+}
+
+.table-dark {
+  background-color: #273d54;
+  border-radius: 0;
+}
+
+.table-dark button {
+  border: 1px solid #bcefa6 !important;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.table-dark .fa {
+  color: #bcefa6;
+}
+
+thead tr th {
+  cursor: pointer;
+}
+
+.img {
+  width: 50px;
+  height: 50px;
+}
