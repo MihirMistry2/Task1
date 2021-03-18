@@ -50,6 +50,18 @@ export class CompanysComponent implements OnInit {
     );
   }
 
+  Search() {
+    if (this.searchText == '') {
+      this.ngOnInit();
+    } else {
+      this.lists = this.lists.filter((res) => {
+        return res.name
+          .toLocaleLowerCase()
+          .match(this.searchText.toLocaleLowerCase());
+      });
+    }
+  }
+
   sort(key) {
     this.key = key;
     this.reverse = !this.reverse;
