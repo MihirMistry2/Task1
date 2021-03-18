@@ -1,0 +1,21 @@
+h1 {
+  color: #b9efa7;
+  font-size: 15em;
+  font-weight: 100;
+}
+
+p {
+  font-size: 2em;
+  font-weight: 100;
+}
+
+.btn {
+  background-color: #b9efa7;
+  box-shadow: none;
+  border-radius: 0;
+  font-weight: bold;
+}
+
+.btn:hover {
+  background-color: #a9da98;
+}
