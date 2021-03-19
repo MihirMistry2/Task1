@@ -11,7 +11,10 @@ module.exports = {
                 res.status(200).send({ result, message: 'successfull' });
             }
         } catch (err) {
-            res.status(500).send({ error: err.message });
+            console.log(err.message);
+            res.status(500).send({
+                error: 'Something went wrong try again later',
+            });
         }
     },
 
@@ -24,7 +27,10 @@ module.exports = {
             }
             res.status(200).send({ result, message: 'successfull' });
         } catch (err) {
-            res.status(500).send({ error: err.message });
+            console.log(err.message);
+            res.status(500).send({
+                error: 'Something went wrong try again later',
+            });
         }
     },
 
@@ -40,9 +46,15 @@ module.exports = {
                 city: req.body.city,
             });
             const result = await data.save();
-            res.status(201).send({ result, message: 'successfull' });
+            res.status(201).send({
+                result,
+                message: 'Item created successfully',
+            });
         } catch (err) {
-            res.status(500).send({ error: err.message });
+            console.log(err.message);
+            res.status(500).send({
+                error: 'Something went wrong try again later',
+            });
         }
     },
 
@@ -61,9 +73,15 @@ module.exports = {
                 },
                 { new: true }
             );
-            res.status(200).send({ result, message: 'successfull' });
+            res.status(200).send({
+                result,
+                message: 'Item updated successfully',
+            });
         } catch (err) {
-            res.status(500).send({ error: err.message });
+            console.log(err.message);
+            res.status(500).send({
+                error: 'Something went wrong try again later',
+            });
         }
     },
 
@@ -72,9 +90,15 @@ module.exports = {
             const result = await Company.findByIdAndDelete({
                 _id: req.params.id,
             });
-            res.status(200).send({ result, message: 'successfull' });
+            res.status(200).send({
+                result,
+                message: 'Item deleted successfully',
+            });
         } catch (err) {
-            res.status(500).send({ error: err.message });
+            console.log(err.message);
+            res.status(500).send({
+                error: 'Something went wrong try again later',
+            });
         }
     },
 };
