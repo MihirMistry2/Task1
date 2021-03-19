@@ -14,4 +14,8 @@ export class CompanyDataService {
   getCompanyById(id: number) {
     return this.http.get<any>(`http://localhost:3200/api/companys/${id}`);
   }
+
+  deleteCompany(id: number) {
+    return this.http.delete(`http://localhost:3200/api/companys/${id}`);
+  }
 }

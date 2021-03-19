@@ -27,6 +27,8 @@ export class CompanysComponent implements OnInit {
   reverse: boolean = false;
   p: number = 1;
   pageSize: number = 5;
+  message: string = '';
+  error: string = '';
 
   constructor(
     private router: Router,
@@ -46,8 +48,26 @@ export class CompanysComponent implements OnInit {
       (error) => {
         if (error) console.log(error);
         this.isEmty = true;
+        this.error = error['error'];
       }
     );
+  }
+
+  onDelete(id: number) {
+    this.companyDataService.deleteCompany(id).subscribe(
+      (response) => {
+        this.message = 'Succesfuly Comapany List Delete';
+        this.onFetch();
+      },
+      (error) => {
+        if (error) console.log(error);
+        this.error = error.error['error'];
+      }
+    );
+  }
+
+  onEdit(id: number) {
+    this.router.navigate(['/list', id]);
   }
 
   Search() {

@@ -27,6 +27,34 @@
         </div>
         <!-- ---------------- -->
 
+        <!-- success msg -->
+        <div *ngIf="message" class="alert alert-success rounded-0" role="alert">
+          {{ message }}
+          <button
+            type="button"
+            class="close"
+            data-dismiss="alert"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <!-- ----------- -->
+
+        <!-- error msg -->
+        <div *ngIf="error" class="alert alert-danger rounded-0" role="alert">
+          {{ error }}
+          <button
+            type="button"
+            class="close"
+            data-dismiss="alert"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <!-- ------------- -->
+
         <!-- list of detail in table -->
         <div class="table-responsive">
           <table class="table table-hover table-dark">
@@ -86,8 +114,14 @@
                 <td>{{ list.state }}</td>
                 <td>{{ list.city }}</td>
                 <td class="text-right">
-                  <button class="btn btn-green fa fa-pencil mx-2"></button>
-                  <button class="btn btn-green fa fa-times mx-2"></button>
+                  <button
+                    (click)="onEdit(list._id)"
+                    class="btn btn-green fa fa-pencil mx-2"
+                  ></button>
+                  <button
+                    (click)="onDelete(list._id)"
+                    class="btn btn-green fa fa-times mx-2"
+                  ></button>
                 </td>
               </tr>
               <!-- -------------------- -->
