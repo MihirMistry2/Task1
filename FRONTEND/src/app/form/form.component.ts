@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CompanyDataService } from '../service/company-data.service';
 
 export class List {
@@ -39,6 +39,7 @@ export class FormComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private companyDataService: CompanyDataService
   ) {}
 
@@ -127,14 +128,12 @@ export class FormComponent implements OnInit {
       if (+this.id === -1) {
         this.companyDataService.createCompany(fd).subscribe(
           (response) => {
+            window.scrollTo(0, 0);
             this.isSuccess = true;
             this.successMessage = response['message'];
-            this.lists.name = '';
-            this.lists.email = '';
-            this.lists.description = '';
-            this.lists.state = '';
-            this.lists.city = '';
-            this.lists.phone = '';
+            setTimeout(() => {
+              this.router.navigate(['/lists']);
+            }, 1000);
           },
           (error) => {
             this.isError = true;
@@ -144,8 +143,12 @@ export class FormComponent implements OnInit {
       } else {
         this.companyDataService.updateCompany(this.id, fd).subscribe(
           (response) => {
+            window.scrollTo(0, 0);
             this.isSuccess = true;
             this.successMessage = response['message'];
+            setTimeout(() => {
+              this.router.navigate(['/lists']);
+            }, 1000);
           },
           (error) => {
             this.isError = true;
