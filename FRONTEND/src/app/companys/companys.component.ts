@@ -39,6 +39,7 @@ export class CompanysComponent implements OnInit {
     this.onFetch();
   }
 
+  // get all list of company detail
   onFetch() {
     this.companyDataService.getAllCompanyList().subscribe(
       (response) => {
@@ -53,6 +54,7 @@ export class CompanysComponent implements OnInit {
     );
   }
 
+  // delete item by its id
   onDelete(id: number) {
     this.companyDataService.deleteCompany(id).subscribe(
       (response) => {
@@ -66,10 +68,12 @@ export class CompanysComponent implements OnInit {
     );
   }
 
+  // redirect to form page with item id
   onEdit(id: number) {
     this.router.navigate(['/lists', id]);
   }
 
+  // search elemnt from table by name only
   Search() {
     if (this.searchText == '') {
       this.ngOnInit();
@@ -82,6 +86,8 @@ export class CompanysComponent implements OnInit {
     }
   }
 
+  // sort table by asc/desc order
+  // key as which column want order by asc/desc
   sort(key) {
     this.key = key;
     this.reverse = !this.reverse;
