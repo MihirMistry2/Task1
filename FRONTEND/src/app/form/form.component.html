@@ -1,1 +1,161 @@
-<p>form works!</p>
+<section>
+  <div class="container">
+    <div class="row d-flex justify-content-center">
+      <div class="card shadow col-lg-6 col-md-8 col-sm-9 col-11 mt-4">
+        <div class="card-body">
+          <!-- success msg -->
+          <div
+            *ngIf="isSuccess"
+            class="alert alert-success rounded-0"
+            role="alert"
+          >
+            {{ successMessage }}
+            <button
+              type="button"
+              class="close"
+              data-dismiss="alert"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <!-- ----------- -->
+
+          <!-- error msg -->
+          <div
+            *ngIf="isError"
+            class="alert alert-danger rounded-0"
+            role="alert"
+          >
+            {{ errorMessage }}
+            <button
+              type="button"
+              class="close"
+              data-dismiss="alert"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <!-- ------------- -->
+          <form #companyForm="ngForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label for="name">Company Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                placeholder="Your company name"
+                name="name"
+                [(ngModel)]="lists.name"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="email">Company Email</label>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                placeholder="Your company email"
+                name="email"
+                [(ngModel)]="lists.email"
+                email
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone No.</label>
+              <input
+                type="text"
+                class="form-control"
+                id="phone"
+                placeholder="Your company phone"
+                name="phone"
+                minlength="10"
+                [(ngModel)]="lists.phone"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="logo">Logo Image</label>
+              <input
+                type="file"
+                class="form-control"
+                id="logo"
+                placeholder="Your company logo"
+                name="logo"
+                (change)="onFileSelected($event)"
+                required="true"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="description">Description</label>
+              <textarea
+                type="description"
+                class="form-control"
+                id="description"
+                placeholder="Description"
+                rows="5"
+                name="description"
+                minlength="5"
+                [(ngModel)]="lists.description"
+                required
+              ></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="state">State</label>
+              <select
+                class="form-control"
+                name="state"
+                id="state"
+                [(ngModel)]="lists.state"
+                (change)="onStateChange($event.target.value)"
+                required
+              >
+                <option
+                  *ngFor="let count of stateList"
+                  value="{{ count.name }}"
+                  [selected]="lists.state == count.name"
+                >
+                  {{ count.name }}
+                </option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="city">City</label>
+              <select
+                class="form-control"
+                name="city"
+                id="city"
+                [(ngModel)]="lists.city"
+                required
+              >
+                <option
+                  *ngFor="let city of cities"
+                  value="{{ city }}"
+                  [selected]="lists.city == city"
+                >
+                  {{ city }}
+                </option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <button class="btn mt-4 shadow-none" type="submit">Submit</button>
+              <button class="btn mt-4 float-right shadow-none" routerLink="../">
+                Back
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

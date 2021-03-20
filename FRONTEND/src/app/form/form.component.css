@@ -1,0 +1,44 @@
+/* #login {
+  position: relative !important;
+  width: 100vw;
+  height: 100vh;
+} */
+
+.card {
+  background-color: #273d54;
+}
+
+.card .card-body .alert {
+  background-color: #f8d7da;
+}
+
+.card .card-body label,
+.card .card-body a {
+  color: #bcefa6;
+}
+
+.card .card-body input,
+.card .card-body textarea,
+.card .card-body select {
+  background: #1d2025;
+  border: 1px solid #bcefa6;
+  border-radius: 0px;
+  color: white;
+  box-shadow: none;
+}
+
+.card .card-body button {
+  background-color: #b9efa7;
+  border: 0px;
+  border-radius: 0px;
+  color: #1d2025;
+  font-weight: bold;
+}
+
+.card .card-body button:hover {
+  background-color: #a9da98;
+}
+
+.ng-invalid:not(form) {
+  border: 1px solid red !important;
+}
