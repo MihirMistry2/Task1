@@ -17,7 +17,7 @@ const fileFilter = (req, file, cb) => {
     if (
         file.mimetype === 'image/jpg' ||
         file.mimetype === 'image/jpeg' ||
-        file.mimetype === 'image/png'
+        (file.mimetype === 'image/png' && !req.file)
     ) {
         cb(null, true);
     } else {
@@ -25,14 +25,14 @@ const fileFilter = (req, file, cb) => {
     }
 };
 
-var upload = multer({
+let upload = multer({
     storage: storage,
     limits: { fileSize: 1024 * 1024 * 5 },
     fileFilter: fileFilter,
 });
 
-router.get('/:id', controller.getDataById);
 router.get('/', controller.getData);
+router.get('/:id', controller.getDataById);
 router.post('/', upload.single('logo'), controller.createData);
 router.patch('/:id', upload.single('logo'), controller.updateData);
 router.delete('/:id', controller.deleteData);
