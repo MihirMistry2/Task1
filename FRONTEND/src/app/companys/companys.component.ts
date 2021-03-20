@@ -48,7 +48,7 @@ export class CompanysComponent implements OnInit {
       (error) => {
         if (error) console.log(error);
         this.isEmty = true;
-        this.error = error['error'];
+        this.error = error['error'].error;
       }
     );
   }
@@ -57,17 +57,17 @@ export class CompanysComponent implements OnInit {
     this.companyDataService.deleteCompany(id).subscribe(
       (response) => {
         this.message = 'Succesfuly Comapany List Delete';
-        this.onFetch();
+        this.ngOnInit();
       },
       (error) => {
         if (error) console.log(error);
-        this.error = error.error['error'];
+        this.error = error.error['error'].error;
       }
     );
   }
 
   onEdit(id: number) {
-    this.router.navigate(['/list', id]);
+    this.router.navigate(['/lists', id]);
   }
 
   Search() {
